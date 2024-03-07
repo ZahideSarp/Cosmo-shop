@@ -3,7 +3,7 @@ import React from 'react'
 
 const CantactPage = async() => {
 
-  await wait(15000)
+  await wait(5000)
   return (
     <div>
       Contact Page
