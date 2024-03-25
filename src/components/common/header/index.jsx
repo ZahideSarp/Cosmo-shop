@@ -3,11 +3,14 @@ import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import menuItems from "./menu.json"
 import Link from 'next/link'
+import Image from 'next/image'
  const Header = () => {
   return (
     <Navbar expand="lg" bg="dark" data-bs-theme="dark" collapseOnSelect>
       <Container>
-        <Navbar.Brand href="#home">Cosmo Shop</Navbar.Brand>
+        <Navbar.Brand href="/" as={Link}>
+          <Image src="/images/logo.png" width={272} height={43} alt='Cosmo Shop' />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

@@ -1,9 +1,20 @@
-import React from 'react'
+import PageHeader from "@/components/common/page-header";
+import Spacer from "@/components/common/spacer";
+import React from "react";
+
+export const metadata = {
+	title: "Login",
+	description: "You can get luxury electornic devices",
+};
 
 const LoginPage = () => {
-  return (
-    <div>LoginPage</div>
-  )
-}
+	return (
+		<div>
+			<PageHeader title="Login" />
+			<Spacer height={50} />
+			<Spacer />
+		</div>
+	);
+};
 
-export default LoginPage
+export default LoginPage;
