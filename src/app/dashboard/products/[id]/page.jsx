@@ -1,11 +1,16 @@
-import React from 'react'
+import EditProductForm from "@/components/dashboard/products/edit-product-form";
+import { config } from "@/utils/config";
+import React from "react";
 
-const DashboardProductDetailPage = ({params, searchParams}) => {
-  console.log("params:",params);
-  console.log("searchParams:",searchParams)
-  return (
-    <div>DashboardProductDetailPage</div>
-  )
-}
+const DashboardProductDetailsPage = async ({ params }) => {
+	const resp = await fetch(`${config.apiURL}/products/${params.id}`);
+	const product = await resp.json();
 
-export default DashboardProductDetailPage
+	return (
+		<div>
+			<EditProductForm product={product} />
+		</div>
+	);
+};
+
+export default DashboardProductDetailsPage;
