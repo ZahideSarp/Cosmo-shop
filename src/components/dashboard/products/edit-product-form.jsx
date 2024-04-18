@@ -1,15 +1,28 @@
 "use client";
-
+import { updateProductAction } from "@/actions/product-actions";
 import CancelButton from "@/components/common/form-controls/cancel-button";
 import SubmitButton from "@/components/common/form-controls/submit-button";
 import { useFormState } from "react-dom";
 import { Alert, Form } from "react-bootstrap";
 
 const EditProductForm = ({ product }) => {
-    const { title, description, price, category, image } = product;
+	const initialState = { message: null, errors: {} };
+
+	// useFormstate hook u ile form ve server actin arasinda  cift yonlu bir iletisim kanali olusur
+	// dispatch ile formdan server action a
+	// state ile server actin dan form a
+	const [state, dispatch] = useFormState(updateProductAction, initialState);
+
+	const { title, description, price, category, image } = state.errors;
+
 	return (
 		<>
-			<Form >
+			{state.errors.common ? (
+				<div className="alert alert-danger">{state.errors.common}</div>
+			) : (
+				""
+			)}
+			<Form action={dispatch}>
 				<input type="hidden" name="id" defaultValue={product.id} />
 				<Form.Group className="mb-3">
 					<Form.Label>Title</Form.Label>
@@ -17,7 +30,7 @@ const EditProductForm = ({ product }) => {
 						name="title"
 						type="text"
 						defaultValue={product.title}
-					
+						isInvalid={!!title}
 					/>
 					<Form.Control.Feedback type="invalid">
 						{title}
@@ -30,7 +43,7 @@ const EditProductForm = ({ product }) => {
 						as="textarea"
 						rows={3}
 						defaultValue={product.description}
-					
+						isInvalid={!!description}
 					/>
 					<Form.Control.Feedback type="invalid">
 						{description}
@@ -42,7 +55,7 @@ const EditProductForm = ({ product }) => {
 						name="price"
 						type="number"
 						defaultValue={product.price}
-					
+						isInvalid={!!price}
 					/>
 					<Form.Control.Feedback type="invalid">
 						{price}
@@ -53,7 +66,7 @@ const EditProductForm = ({ product }) => {
 					<Form.Select
 						name="category"
 						defaultValue={product.category}
-						
+						isInvalid={!!category}
 					>
 						<option value="">Select</option>
 						<option value="Home">Home</option>
@@ -72,7 +85,7 @@ const EditProductForm = ({ product }) => {
 						name="image"
 						type="text"
 						defaultValue={product.image}
-						
+						isInvalid={!!image}
 					/>
 					<Form.Control.Feedback type="invalid">
 						{image}

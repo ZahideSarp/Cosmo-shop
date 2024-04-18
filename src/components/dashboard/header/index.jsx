@@ -5,9 +5,17 @@ import React from 'react'
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap'
 import "./header.scss"
 import menuItems from "./menu.json"
+import { signOut } from "next-auth/react";
+
 const DashboardHeader = () => {
   const pathname=usePathname();
-  console.log("pathname:",pathname)
+ const handleLogout=()=>{
+   
+  const resp=confirm("Are you sure you want to logout?");
+  if(!resp) return;
+  signOut({ callbackUrl: "/" });
+ }
+
   return (
     <Navbar expand={false} className="bg-danger mb-3" collapseOnSelect>
     <Container >
@@ -35,7 +43,7 @@ const DashboardHeader = () => {
               {item.title} 
               </Nav.Link>))} 
             
-            <Nav.Link >Signout</Nav.Link>
+            <Nav.Link onClick={handleLogout} >SignOut</Nav.Link>
           </Nav>
         </Offcanvas.Body>
       </Navbar.Offcanvas>
