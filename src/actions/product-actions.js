@@ -54,3 +54,68 @@ export const createProductAction = async (prevState, formData) => {
 	revalidatePath("/dashboard/products");
 	redirect("/dashboard/products");
 };
+
+export const updateProductAction = async (prevState, formData) => {
+	const fields = convertFormDataToJson(formData);
+
+	try {
+		FormSchema.validateSync(fields, { abortEarly: false });
+		//throw new Error('something went wrong')
+		
+		const resp = await fetch(`${config.apiURL}/products/${fields.id}`, {
+			method: "put",
+			body: JSON.stringify(fields),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		});
+
+		if (!resp.ok) {
+			const data = await resp.json();
+			throw new Error(data.message);
+		}
+	} catch (error) {
+		if (error instanceof Yup.ValidationError) {
+			return getYupErrors(error.inner);
+		}
+
+		return {
+			message: "Something went wrong",
+			errors: {
+				common: error.message,
+			},
+		};
+	}
+
+	revalidatePath("/products");
+	revalidatePath(`/products/${fields.id}`);
+	revalidatePath("/dashboard/products");
+	revalidatePath(`/dashboard/products/${fields.id}`);
+	redirect("/dashboard/products");
+};
+
+export const deleteProductAction = async (id) => {
+	try {
+		if (!id) throw new Error("id is missing");
+
+		const res = await fetch(`${config.apiURL}/products/${id}`, {
+			method: "delete",
+		});
+
+		if (!res.ok) {
+			const data = await res.json();
+			throw new Error(data.message);
+		}
+	} catch (error) {
+		return {
+			message: "Something went wrong",
+			errors: {
+				common: error.message,
+			},
+		};
+	}
+
+	revalidatePath("/products");
+	revalidatePath("/dashboard/products");
+	redirect("/dashboard/products");
+};
