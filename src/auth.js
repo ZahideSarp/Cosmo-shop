@@ -30,6 +30,16 @@ const config = {
     // eger bu callback true donerse route icine girlir, yoksa signin sayfasina gidilir
     //role kontrolleri de burada yapılıyor
     authorized({ request, auth }) {
+      const { pathname, searchParams } = request.nextUrl;
+      
+      const isUserLoggedIn = !!auth?.user;
+      const isUserInLoginPage = pathname === "/login";
+
+      if (isUserLoggedIn && isUserInLoginPage) {
+        const callbackUrl = searchParams.get("callbackUrl");
+        const url = new URL(callbackUrl || "/dashboard", request.nextUrl);
+        return Response.redirect(url);
+      }
       console.log(auth);
       return !!auth?.user;
     },
