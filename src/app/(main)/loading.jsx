@@ -1,13 +1,12 @@
-import Loader from '@/components/common/loader'
-import React from 'react'
+import Loader from "@/components/common/loader";
+import React from "react";
 
 const LoadingPage = () => {
-  return (
-    <div className='h-100 d-flex justify-content-center align-items-center'>
+	return (
+		<div className="h-100 d-flex justify-content-center  align-items-center ">
+			<Loader size="lg"/>
+		</div>
+	);
+};
 
-        <Loader size='lg'/>
-    </div>
-  )
-}
-
-export default LoadingPage
+export default LoadingPage;

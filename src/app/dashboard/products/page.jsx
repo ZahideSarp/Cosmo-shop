@@ -1,4 +1,3 @@
-
 import ProductHeader from "@/components/dashboard/products/product-header";
 import ProductList from "@/components/dashboard/products/product-list";
 import { config } from "@/utils/config";
@@ -13,7 +12,7 @@ const DashboardProductsPage = async () => {
 
 	return (
 		<div>
-			<ProductHeader />
+			<ProductHeader products={products}/>
 			<ProductList products={products} />
 		</div>
 	);

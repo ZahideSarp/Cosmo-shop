@@ -1,11 +1,9 @@
-"use client"
-import React from 'react'
-import { Spinner } from 'react-bootstrap'
+"use client";
+import React from "react";
+import { Spinner } from "react-bootstrap";
 
-const Loader = ({variant="danger", size="sm", animation="border"}) => {
-  return (
-   <Spinner variant={variant} animation={animation} size={size}/>
-  )
-}
+const Loader = (props) => {
+	return <Spinner variant="danger" animation="border" size="sm" {...props} />;
+};
 
 export default Loader;

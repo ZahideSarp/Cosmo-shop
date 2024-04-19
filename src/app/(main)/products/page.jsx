@@ -1,4 +1,4 @@
- import PageHeader from "@/components/common/page-header";
+import PageHeader from "@/components/common/page-header";
 import Spacer from "@/components/common/spacer";
 import ProductList from "@/components/products/product-list";
 import { config } from "@/utils/config";

@@ -11,8 +11,7 @@ const ProductsInsameCategory = ({ products }) => {
 				spaceBetween={50}
 				slidesPerView={3}
 				onSlideChange={() => console.log("slide change")}
-				onSwiper={(swiper) => console.log(swiper)
-				}
+				onSwiper={(swiper) => console.log(swiper)}
 			>
 				{products.map((item) => (
 					<SwiperSlide key={item.id}>

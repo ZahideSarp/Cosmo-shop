@@ -1,10 +1,10 @@
 import React from 'react'
 
-const DashboardsProfilePage = () => {
-  throw new Error("test");
+const DashboardProfilePage = () => {
+  //throw new Error("Test2")
   return (
-    <div>DashboardsProfilePage</div>
+    <div>DashboardProfilePage</div>
   )
 }
 
-export default DashboardsProfilePage
+export default DashboardProfilePage

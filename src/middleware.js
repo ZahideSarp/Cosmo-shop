@@ -1,4 +1,3 @@
-//authendication kontrolunun uygulamanin neresinde olacagini belirlemek icin kullanılir.
 export { auth as middleware } from "@/auth";
 // Bu satir authentication yapisinin tum uygulamada devreye alinmasini saglar
 
